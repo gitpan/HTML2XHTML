@@ -1,0 +1,116 @@
+=head1 NAME
+
+HTML2XHTML - Wrapper to command-line program that converts from HTML 3.x/4.x to XHTML 1.0
+
+=head1 SYNOPSIS
+
+use HTML2XHTML; 
+
+OR
+
+require HTML2XHTML;
+
+	To convert an HTML file (and no external CSS file) to XHTML:  
+
+=over 5 
+
+=item B<Win32 users>:
+
+=back
+
+C<my $foo = new HTML2XHTML(file_name => '..//foo//foo.html');>
+
+C<my $foo = new HTML2XHTML(file => '..\foo\foo.html');>
+
+C<my $foo = new HTML2XHTML(file => 'C://My Documents//foo//foo.html');>
+
+=over 5 
+
+=item B<Non-Win32 Users>: 
+
+=back
+
+C<my $foo = new HTML2XHTML(file_name => '../foo/foo.html');>
+
+	To convert HTML files and external CSS files to XHTML:
+
+C<my $foo = new HTML2XHTML(file_name => 'foo.html, foo.css, foo2.html, foo3.html, bar.css');>
+
+	To convert a directory to XHTML:
+
+C<my $foo = new HTML2XHTML(dir => '../foo');>
+
+	To convert the current directory of HTML files and external CSS files to XHTML:
+
+C<my $foo = new HTML2XHTML(dir => 'current');>
+
+=head1 DESCRIPTION
+
+HTML2XHTML is my first attempt at writing a module and distribution.  It is a pure Perl implementation written to convert an 
+HTML 4.01 Transitional page to XHTML 1.0 Strict (there is no check for usage of deprecated tags).  I had been writing for
+almost a year now validating/conforming HTML 4.01 code, but had never bothered to go the extra steps to use XHTML.  This 
+module also supports converting external CSS documents and a directory of HTML and/or CSS documents.
+
+There is support for more than 150 HTML 3.x/4.x tags, including tags that have been deprecated in versions 3.x or
+4.x (to maintain compatibility with the current document structure).  In the next version, the deprecated tags may be 
+replaced programmatically with the updated tag or module to (really) conform to XHTML 1.0 standards.
+
+The original script was designed to be ran from the command-line with option flags for either a directory or files to be 
+converted, and 2 days after completing the original, it was decided to create a module to act as a wrapper for the command-line
+program.  
+
+For those interested in command-line options, see below:
+
+	You can specify a whole directory to be converted either by putting 'dir' or 'directory' after the name of the 
+command-line script followed by the name of the directory.
+
+C<perl convert_xhtml2.pl dir|directory [relative|absolute directory path] foo>
+
+C<perl convert_xhtml2.pl dir current>
+
+C<perl convert_xhtml2.pl directory ../foo/>
+
+	You can also specify an HTML document, CSS document, or multiple documents (including the directory path if not in the
+same directory as the program) to convert followed by commas.
+
+C<perl convert_xhtml2.pl [relative|absolute directory path] foo.html>
+
+C<perl convert_xhtml2.pl ../bar/foo.html, bar.css>
+
+=head1 METHODS
+
+my $foo = new HTML2XHTML(file_name => '..//foo//foo.html');
+
+This method invokes the command-line program with the options passed.  The options can either be a list of file names
+(either absolute or relative path) separated by commas, or the name of a directory.  
+
+For files, there is an abbreviated form of the key, which is 'file', if you do not wish to write 'file_name'.
+
+=head2 PREREQUISITES
+
+This module only requires a working version of Cwd with Perl 5.001 or later.
+
+=head2 EXPORT
+
+None by default.
+
+=head1 SEE ALSO
+
+L<http://www.w3.org/TR/xhtml1/> XHTML 1.0 The Extensible HyperText Markup Language (Second Edition),
+
+L<http://search.cpan.org/~kwilliams/PathTools-3.23/Cwd.pm> Cwd
+
+=head1 AUTHOR
+
+Obiora Embry
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2006 by Obiora Embry
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.7 or,
+at your option, any later version of Perl 5 you may have available.
+
+
+=cut
