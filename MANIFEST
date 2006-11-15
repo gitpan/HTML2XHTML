@@ -2,8 +2,8 @@ Changes
 Makefile.PL
 MANIFEST
 README
-try.css
-try.html
+t/sample/try.css
+t/sample/try.html
 t/convert_current_directory.t
 t/convert_html_file.t
 t/convert_css_file.t

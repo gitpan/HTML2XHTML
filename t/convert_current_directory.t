@@ -2,6 +2,7 @@ use strict;
 
 use Test::More 'no_plan';
 
+use lib 'blib/lib/HTML2XHTML/'; 
 use HTML2XHTML;
 
 my $convert = new HTML2XHTML(dir => 'current');

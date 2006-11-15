@@ -10,39 +10,39 @@ OR
 
 require HTML2XHTML;
 
-	To convert an HTML file (and no external CSS file) to XHTML:  
+To convert an HTML file (and no external CSS file) to XHTML:  
 
 =over 5 
 
-=item B<Win32 users>:
+=item B<Win32 users:
 
 =back
 
-C<my $foo = new HTML2XHTML(file_name => '..//foo//foo.html');>
+	my $foo = new HTML2XHTML(file_name = '..//foo//foo.html');
 
-C<my $foo = new HTML2XHTML(file => '..\foo\foo.html');>
+	my $foo = new HTML2XHTML(file = '..\foo\foo.html');
 
-C<my $foo = new HTML2XHTML(file => 'C://My Documents//foo//foo.html');>
+	my $foo = new HTML2XHTML(file = 'C://My Documents//foo//foo.html');
 
 =over 5 
 
-=item B<Non-Win32 Users>: 
+=item B<Non-Win32 Users: 
 
 =back
 
-C<my $foo = new HTML2XHTML(file_name => '../foo/foo.html');>
+	my $foo = new HTML2XHTML(file_name = '../foo/foo.html');
 
-	To convert HTML files and external CSS files to XHTML:
+To convert HTML files and external CSS files to XHTML:
 
-C<my $foo = new HTML2XHTML(file_name => 'foo.html, foo.css, foo2.html, foo3.html, bar.css');>
+	my $foo = new HTML2XHTML(file_name = 'foo.html, foo.css, foo2.html, foo3.html, bar.css');
 
-	To convert a directory to XHTML:
+To convert a directory to XHTML:
 
-C<my $foo = new HTML2XHTML(dir => '../foo');>
+	my $foo = new HTML2XHTML(dir = '../foo');
 
-	To convert the current directory of HTML files and external CSS files to XHTML:
+To convert the current directory of HTML files and external CSS files to XHTML:
 
-C<my $foo = new HTML2XHTML(dir => 'current');>
+	my $foo = new HTML2XHTML(dir = 'current');
 
 =head1 DESCRIPTION
 
@@ -61,25 +61,25 @@ program.
 
 For those interested in command-line options, see below:
 
-	You can specify a whole directory to be converted either by putting 'dir' or 'directory' after the name of the 
+You can specify a whole directory to be converted either by putting 'dir' or 'directory' after the name of the 
 command-line script followed by the name of the directory.
 
-C<perl convert_xhtml2.pl dir|directory [relative|absolute directory path] foo>
+	perl convert_xhtml2.pl dir|directory [relative|absolute directory path] foo
 
-C<perl convert_xhtml2.pl dir current>
+	perl convert_xhtml2.pl dir current
 
-C<perl convert_xhtml2.pl directory ../foo/>
+	perl convert_xhtml2.pl directory ../foo/
 
-	You can also specify an HTML document, CSS document, or multiple documents (including the directory path if not in the
+You can also specify an HTML document, CSS document, or multiple documents (including the directory path if not in the
 same directory as the program) to convert followed by commas.
 
-C<perl convert_xhtml2.pl [relative|absolute directory path] foo.html>
+	perl convert_xhtml2.pl [relative|absolute directory path] foo.html
 
-C<perl convert_xhtml2.pl ../bar/foo.html, bar.css>
+	perl convert_xhtml2.pl ../bar/foo.html, bar.css
 
 =head1 METHODS
 
-my $foo = new HTML2XHTML(file_name => '..//foo//foo.html');
+my $foo = new HTML2XHTML(file_name = '..//foo//foo.html');
 
 This method invokes the command-line program with the options passed.  The options can either be a list of file names
 (either absolute or relative path) separated by commas, or the name of a directory.  
@@ -88,7 +88,7 @@ For files, there is an abbreviated form of the key, which is 'file', if you do n
 
 =head2 PREREQUISITES
 
-This module only requires a working version of Cwd with Perl 5.001 or later.
+This module requires Cwd and Perl 5.001 or later.
 
 =head2 EXPORT
 
