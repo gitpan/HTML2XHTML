@@ -3,7 +3,7 @@ package HTML2XHTML;
 use strict;
 use warnings;
 
-our $VERSION = '0.03.01';
+our $VERSION = '0.03.02';
 
 sub new 
 {
@@ -22,7 +22,7 @@ sub new
 	
 	if (!exists($OPTS{dir}) && !exists($OPTS{file}) && !exists($OPTS{file_name})) { print $OPTS{file_name}; die('You must specify either a directory name or file.'); }	
 		
-	my @file = $OPTS{file} || $OPTS{file_name} if ($OPTS{file_name});		
+	my @file = $OPTS{file} || $OPTS{file_name} if ($OPTS{file_name} || $OPTS{file});		
 	my @directory = 'dir '.$OPTS{dir} if ($OPTS{dir});		
 
     eval { system("perl convert_xhtml2.pl @file @directory"); }; 

@@ -9,10 +9,14 @@ Revision history for Perl extension HTML2XHTML.
 	
 0.03  Mon November 13, 2006 12:15:50 PM EST	
 	- wrote module to serve as wrapper for original command-line program; made changes to command-line program to 
-	accomodate the wrapper; added more error handling to the command-line program
+	accomodate the wrapper; added more error handling to the command-line program; submitted distribution to CPAN
 	
 0.03.01  Wed November 15, 2006 2:06:03 PM EST	
 	- modified tests to include the directory of the lib and modified POD documentation
 		
+0.03.02  Thu November 16, 2006 3:20:10 PM EST	
+	- added change to wrapper so that if the shortened version of file_name is used, the file will still be converted;
+	added a search-replace for align direction
+	
 		
 

@@ -283,6 +283,7 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/STARTTIME/starttime/ig;
 	$lines =~ s/ENDTIME/endtime/ig;	
 	$lines =~ s/ALIGN =|ALIGN=/align=/ig; 	
+	$lines =~ s/align=\"(\w+)\"/align=\"\L$1\"/ig;
 	$lines =~ s/SUMMARY =|VOLUME=/summary=/ig; 
 	$lines =~ s/DIR =|DIR=/dir=/ig; 		
 	$lines =~ s/dir=\"(\w+)\"/dir=\"\L$1\"/ig; 		
