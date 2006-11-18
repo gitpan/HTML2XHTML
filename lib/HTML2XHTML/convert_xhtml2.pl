@@ -1,36 +1,30 @@
-#!/usr/bin/perl -w
+#!perl -w
 
 use strict;
 use Cwd;
     
 # Name     : 
 # Author   : Obiora Embry
-# Date     									: 09 November 2006 (Thu, November 09, 2006, 12:40:17 PM EST)
-# Date Updated (Filename change, etc.)    	: 11 November 2006 (Sat, November 11, 2006, 10:28:40 AM EST)
-# Date Complete 1							: 11 November 2006 (Sat, November 11, 2006, 12:47:45 PM EST)
-# Date Updated 2							: 13 November 2006 (Mon, November 13, 2006, 12:15:50 PM EST)
-# Date Completed 2							: 13 November 2006 (Mon, November 13, 2006, 5:39:28 PM EST)
-# Description    							: convert from HTML 3.x/4.x to XHTML 1.0
-#Usage										: see below
-
-#user can specify that ALL HTML and CSS documents in a directory should be converted by putting 'dir' or 'directory'
+# Date     : 09 November 2006 (Thu November 09, 2006 12:40:17, PM EST)
+# Date Updated (Filename change, etc.)    : 11 November 2006 (Sat, November 11, 2006, 10:28:40 AM EST)
+# Date Complete: 11 November 2006 (Sat, November 11, 2006, 12:47:45 PM EST)
+# Description     : convert from HTML 4 to XHTML 1.0
+#Usage: see below:
+#user can specify that ALL HTML and CSS documents in current directory should be converted by putting 'dir' or 'directory'
 #examples perl convert_xhtml.pl dir [relative|absolute directory path|'current'] || perl convert_xhtml.pl directory 
 #[relative|absolute directory path|'current']
 #-------------------------------------------------------
-#user can specify the names of HTML and external CSS documents (with relative directory location, unless in current 
-#directory) separated by commas) that should be converted 
+#user can specify the names of HTML and CSS documents (with relative directory location, unless in current directory)
+#separated by commas) that should be converted 
 #examples perl convert_xhtml.pl [relative|absolute directory path] filenames 
 
-#Win32 users:
-#..//foo//foo.html, ..\foo\foo.html, C://My Documents//foo//foo.html 
-
 my ($html_files_ref,$css_files_ref) = directory_search_convert($ARGV[1]) if ($ARGV[0] && ($ARGV[0] eq 'dir' || $ARGV[0] eq 'directory'));
-($html_files_ref,$css_files_ref) = file_convert(@ARGV) if ($ARGV[0] && ($ARGV[0] ne 'dir' && $ARGV[0] ne 'directory'));
+($html_files_ref,$css_files_ref) = file_convert($ARGV[0]) if ($ARGV[0] && ($ARGV[0] ne 'dir' && $ARGV[0] ne 'directory'));
 
 printf "\t".$html_files_ref." HTML document%s successfully converted\n", ($html_files_ref == 1) ? '' : 's' if ($ARGV[0] && $html_files_ref);
 printf "\t".$css_files_ref." CSS document%s successfully converted\n", ($css_files_ref == 1) ? '' : 's' if ($ARGV[0] && $css_files_ref);
 
-error() unless ($ARGV[0]);
+error('no file') unless ($ARGV[0]);
 exit(0);
 
 sub directory_search_convert
@@ -65,10 +59,10 @@ my ($searchdir, $document_type) = @_;
 my ($filename,@files) = ('',()); 
 #current directory = "."
 
-	opendir DIR, $searchdir or error($searchdir, 'directory'); 
+	opendir DIR, $searchdir || die "Cannot open directory $searchdir: $!";
 
 	while (defined($filename = readdir(DIR)))
-	{ 		
+	{ 
 	    push (@files, $searchdir."\\".$filename) if ($filename !~ /^[.]+$/ && $filename =~ /$document_type/); #skip dot + double dot
 	}									
 	closedir(DIR);
@@ -78,21 +72,16 @@ my ($filename,@files) = ('',());
 
 sub file_convert
 {
-my @files = @_;
-
+my @files = split(/,/, $_[0]);
+my @files_now = @files;
 my ($i,$files_html,$files_css);
 
-	for ($i = 0; $i < @files; $i++)
+	for ($i = 0; $i < @files_now; $i++)
 	{
-		$files[$i] =~ s/,//g;
-		$files[$i] =~ s!\\!\/\/!g;
-		
-		error($files[$i], 'file'), next if (!(-e $files[$i]));
-		
-		convert_html_xhtml($files[$i]) if ($files[$i] =~ /\.htm/);
-		convert_css_xhtml($files[$i]) if ($files[$i] =~ /\.css/);
-		$files_html++ if ($files[$i] =~ /\.htm/);
-		$files_css++ if ($files[$i] =~ /\.css/);
+		convert_html_xhtml($files_now[$i]) if ($files_now[$i] =~ /\.htm/);
+		convert_css_xhtml($files_now[$i]) if ($files_now[$i] =~ /\.css/);
+		$files_html++ if ($files_now[$i] =~ /\.htm/);
+		$files_css++ if ($files_now[$i] =~ /\.css/);
 	}
 		
 	return $files_html,$files_css;	
@@ -161,11 +150,10 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/H(\d{1})/h$1/ig;
 	$lines =~ s/<\/FORM/<\/form/ig;
 	$lines =~ s/<FORM/<form/ig;	
-	$lines =~ s/<UL/<ul/ig;
-	$lines =~ s/UL /ul /ig;	
-	$lines =~ s/TH /th /ig;
-	$lines =~ s/B /b /ig;	
-	$lines =~ s/P /p /ig;	
+	$lines =~ s/<UL/<ul/ig;	 	
+	$lines =~ s/<\/UL>/<\/ul>/ig;		
+	$lines =~ s/<B>/<b>/ig;	 	
+	$lines =~ s/<\/B>/<\/b>/ig;		
 	$lines =~ s/MENU /menu /ig;
 	$lines =~ s/SMALL/small/ig;
 	$lines =~ s/<\/UL/<\/ul/ig;
@@ -243,25 +231,8 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/<\/RT/<\/rt/ig;	
 	$lines =~ s/<RP/<rp/ig;
 	$lines =~ s/<\/RP/<\/rp/ig;		
-	$lines =~ s/<TABLE/<table/ig;
-	$lines =~ s/<\/TABLE/<\/table/ig;	
-	$lines =~ s/TD/td/ig;	
-	$lines =~ s/<TR/<tr/ig;
-	$lines =~ s/<\/TR/<\/tr/ig;	
-	$lines =~ s/TBODY/tbody/ig;	
-	$lines =~ s/<CAPTION/<caption/ig;
-	$lines =~ s/<\/CAPTION/<\/caption/ig;		
-	$lines =~ s/THEAD/thead/ig;	
-	$lines =~ s/TFOOT/tfoot/ig;	
-	$lines =~ s/COLGROUP/colgroup/ig;	
-	$lines =~ s/<COL/<col/ig;
-	$lines =~ s/<\/COL/<\/col/ig;	
-	$lines =~ s/<TH/<th/ig;
-	$lines =~ s/<\/TH/<\/th/ig;	
 	$lines =~ s/<EM/<em/ig;
 	$lines =~ s/<\/EM/<\/em/ig;	
-	$lines =~ s/<b/<b/ig;
-	$lines =~ s/<\/b/<\/b/ig;		
 	$lines =~ s/<I/<i/ig;
 	$lines =~ s/<\/I/<\/i/ig;		
 	$lines =~ s/<U/<u/ig;
@@ -283,13 +254,28 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/STARTTIME/starttime/ig;
 	$lines =~ s/ENDTIME/endtime/ig;	
 	$lines =~ s/ALIGN =|ALIGN=/align=/ig; 	
-	$lines =~ s/align=\"(\w+)\"/align=\"\L$1\"/ig;
 	$lines =~ s/SUMMARY =|VOLUME=/summary=/ig; 
 	$lines =~ s/DIR =|DIR=/dir=/ig; 		
 	$lines =~ s/dir=\"(\w+)\"/dir=\"\L$1\"/ig; 		
 	$lines =~ s/LANG =|LANG=/lang=/ig; 		
 	$lines =~ s/lang=\"(\w+)\"/lang=\"\L$1\"/ig; 			
 	$lines =~ s/SPAN =|SPAN=/span=/ig; 
+	$lines =~ s/<TABLE/<table/ig;
+	$lines =~ s/<\/TABLE/<\/table/ig;	
+	$lines =~ s/<TD/<td/ig;
+	$lines =~ s/<\/TD/<\/td/ig;		
+	$lines =~ s/<TH/<th/ig;	
+	$lines =~ s/<\/TH>/<\/th>/ig;
+	$lines =~ s/<TR/<tr/ig;			
+	$lines =~ s/<\/TR/<\/tr/ig;	
+	$lines =~ s/TBODY/tbody/ig;	
+	$lines =~ s/<CAPTION/<caption/ig;
+	$lines =~ s/<\/CAPTION/<\/caption/ig;		
+	$lines =~ s/THEAD/thead/ig;	
+	$lines =~ s/TFOOT/tfoot/ig;	
+	$lines =~ s/COLGROUP/colgroup/ig;	
+	$lines =~ s/<COL/<col/ig;
+	$lines =~ s/<\/COL/<\/col/ig;			
 	$lines =~ s/ROWSPAN =|ROWSPAN=/rowspan=/ig; 
 	$lines =~ s/COLSPAN =|COLSPAN=/colspan=/ig; 
 	$lines =~ s/NOWRAP/nowrap/ig; 
@@ -348,9 +334,7 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/FOR =|FOR=/for=/ig;	
 	$lines =~ s/MAXLENGTH =|MAXLENGTH=/maxlength=/ig;	
 	$lines =~ s/SIZE =|SIZE=/size=/ig;	
-	$lines =~ s/dtd xhtml/DTD XHTML/ig;		
-	$lines =~ s!\/DTD\/!DTD!ig;
-	
+			
 	print OUTPUT $lines;
 }
 
@@ -399,13 +383,15 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/TABLE/table/ig;
 	$lines =~ s/TD/tr/ig;
 	$lines =~ s/TR/tr/ig;
+	$lines =~ s/TH/th/ig;
+	$lines =~ s/ROWSPAN/rowspan/ig;
+	$lines =~ s/COLSPAN/colspan/ig;	
 	$lines =~ s/TBODY/tbody/ig;	
 	$lines =~ s/CAPTION/caption/ig;
 	$lines =~ s/THEAD/thead/ig;	
 	$lines =~ s/TFOOT/tfoot/ig;	
 	$lines =~ s/COLGROUP/colgroup/ig;	
-	$lines =~ s/COL/col/ig;	
-	$lines =~ s/TH/th/ig;	
+	$lines =~ s/COL/col/ig;			
 	$lines =~ s/EM/em/ig;	
 	$lines =~ s/B/b/ig;	
 	$lines =~ s/I/i/ig;	
@@ -419,8 +405,6 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/U/u/ig;	
 	$lines =~ s/BLINK/blink/ig;	
 	$lines =~ s/EMBED/embed/ig;				
-	$lines =~ s/ROWSPAN/rowspan/ig;
-	$lines =~ s/COLSPAN/colspan/ig;
 	$lines =~ s/NOWRAP/nowrap/ig; 
 	$lines =~ s/AXIS/axis/ig;	
 	$lines =~ s/BGCOLOR/bgcolor/ig;
@@ -494,13 +478,5 @@ close(FILE);
 
 sub error
 {
-	print "\a\t".'You did not enter anything to convert to convert, please do so the next time.'."\n" if (!$_[0]);
-	
-	my $error = ($_[0] && $_[1] && $_[1] !~ /dir/ ? ("\a\t".'The '.$_[1].' '.$_[0]. ' does not exist, skipping...'."\n\n") :
-	&do_me($_[0], $_[1]) ) if ($_[0]); 
-	
-	return $error if ($error);
+	print "\a\t".'You did not enter anything to convert to convert, please do so the next time.';
 }
-
-sub do_me { print "\a\t".'The '.$_[1].' '.$_[0]. ' does not exist, exiting...'."\n\n"; sleep(2); exit(0); }
-#gets called if directory does not exist

@@ -3,7 +3,7 @@ package HTML2XHTML;
 use strict;
 use warnings;
 
-our $VERSION = '0.03.03';
+our $VERSION = '0.03.04';
 
 sub new 
 {

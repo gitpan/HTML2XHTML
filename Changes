@@ -20,5 +20,7 @@ Revision history for Perl extension HTML2XHTML.
 
 0.03.03  Fri November 17, 2006 9:42:24 PM EST
 	- correction for DOCTYPE declaration
-		
+
+0.03.04  Fri November 17, 2006 9:42:24 PM EST
+	- fixed search-replace for some table tags and <p>
 
