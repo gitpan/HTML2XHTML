@@ -348,7 +348,9 @@ foreach $lines (@lines)              # loop thru file
 	$lines =~ s/FOR =|FOR=/for=/ig;	
 	$lines =~ s/MAXLENGTH =|MAXLENGTH=/maxlength=/ig;	
 	$lines =~ s/SIZE =|SIZE=/size=/ig;	
-			
+	$lines =~ s/dtd xhtml/DTD XHTML/ig;		
+	$lines =~ s!\/DTD\/!DTD!ig;
+	
 	print OUTPUT $lines;
 }
 
