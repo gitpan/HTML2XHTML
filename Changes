@@ -14,13 +14,15 @@ Revision history for Perl extension HTML2XHTML.
 0.03.01  Wed November 15, 2006 2:06:03 PM EST	
 	- modified tests to include the directory of the lib; modified POD documentation
 		
-0.03.03  Thu November 16, 2006 3:20:10 PM EST	
+0.03.02  Thu November 16, 2006 3:20:10 PM EST	
 	- added change to wrapper so that if the shortened version of file_name is used, the file will still be converted;
 	added a search-replace for align direction
 
 0.03.03  Fri November 17, 2006 9:42:24 PM EST
 	- correction for DOCTYPE declaration
 
-0.03.04  Fri November 17, 2006 9:42:24 PM EST
-	- fixed search-replace for some table tags and <p>
+0.03.04  Sat November 18, 2006 3:46:50 EST
+	- correction for DOCTYPE declaration; fixed search-replace for some table tags and <p>
 
+0.03.05  Sun November 19, 2006 8:51:24 PM EST
+	- added word boundary for some common names/tags
