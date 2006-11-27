@@ -51,7 +51,7 @@ HTML 4.01 Transitional page to XHTML 1.0 Strict (there is no check for usage of 
 almost a year now validating/conforming HTML 4.01 code, but had never bothered to go the extra steps to use XHTML.  This 
 module also supports converting external CSS documents and a directory of HTML and/or CSS documents.
 
-There is support for more than 150 HTML 3.x/4.x tags, including tags that have been deprecated in versions 3.x or
+There is support for approximately 75 HTML 3.x/4.x tags, including tags that have been deprecated in versions 3.x or
 4.x (to maintain compatibility with the current document structure).  In the next version, the deprecated tags may be 
 replaced programmatically with the updated tag or module to (really) conform to XHTML 1.0 standards.
 

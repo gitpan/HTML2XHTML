@@ -26,3 +26,8 @@ Revision history for Perl extension HTML2XHTML.
 
 0.03.05  Sun November 19, 2006 8:51:24 PM EST
 	- added word boundary for some common names/tags
+
+0.03.06  Mon November 27, 2006 5:40:52 PM EST
+	- added support for basic in-line JavaScript commands and additional HTML tags
+	
+	
