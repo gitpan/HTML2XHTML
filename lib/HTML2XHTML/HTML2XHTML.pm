@@ -3,7 +3,7 @@ package HTML2XHTML;
 use strict;
 use warnings;
 
-our $VERSION = '0.03.06';
+our $VERSION = '0.03.07';
 
 sub new 
 {
@@ -25,9 +25,9 @@ sub new
 	my @file = $OPTS{file} || $OPTS{file_name} if ($OPTS{file_name} || $OPTS{file});		
 	my @directory = 'dir '.$OPTS{dir} if ($OPTS{dir});		
 
-    eval { system("perl convert_xhtml2.pl @file @directory"); }; 
+    eval { system("perl lib/HTML2XHTML/convert_xhtml2.pl @file @directory"); }; 
     
-    if ($@) { die 'There was a problem converting from HTML to XHTML.' }
+    if ($@) { warn 'There was a problem converting from HTML to XHTML.'; system("perl convert_xhtml2.pl @file @directory");  }
     
     return $self;
 }
