@@ -30,4 +30,6 @@ Revision history for Perl extension HTML2XHTML.
 0.03.06  Mon November 27, 2006 5:40:52 PM EST
 	- added support for basic in-line JavaScript commands and additional HTML tags
 	
+0.03.08  Thu April 26, 2007 3:06:17 PM EST
+	- added support for custom XML encoding and fixed errors in POD documentation
 	

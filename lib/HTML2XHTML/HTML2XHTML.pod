@@ -18,11 +18,11 @@ To convert an HTML file (and no external CSS file) to XHTML:
 
 =back
 
-	my $foo = new HTML2XHTML(file_name = '..//foo//foo.html');
+	my $foo = new HTML2XHTML(encoding => 'UTF-8', file_name => '..//foo//foo.html');
 
-	my $foo = new HTML2XHTML(file = '..\foo\foo.html');
+	my $foo = new HTML2XHTML(encoding => 'ISO 8859-1', file => '..\foo\foo.html');
 
-	my $foo = new HTML2XHTML(file = 'C://My Documents//foo//foo.html');
+	my $foo = new HTML2XHTML(encoding => 'ISO 8859-1', file => 'C://My Documents//foo//foo.html');
 
 =over 5 
 
@@ -30,19 +30,19 @@ To convert an HTML file (and no external CSS file) to XHTML:
 
 =back
 
-	my $foo = new HTML2XHTML(file_name = '../foo/foo.html');
+	my $foo = new HTML2XHTML(encoding => 'ISO 8859-1', file_name => '../foo/foo.html');
 
 To convert HTML files and external CSS files to XHTML:
 
-	my $foo = new HTML2XHTML(file_name = 'foo.html, foo.css, foo2.html, foo3.html, bar.css');
+	my $foo = new HTML2XHTML(encoding => 'UTF-16', file_name => 'foo.html, foo.css, foo2.html, foo3.html, bar.css');
 
 To convert a directory to XHTML:
 
-	my $foo = new HTML2XHTML(dir = '../foo');
+	my $foo = new HTML2XHTML(encoding => 'UTF-8', dir => '../foo');
 
 To convert the current directory of HTML files and external CSS files to XHTML:
 
-	my $foo = new HTML2XHTML(dir = 'current');
+	my $foo = new HTML2XHTML(encoding => 'UTF-8', dir => 'current');
 
 =head1 DESCRIPTION
 
@@ -64,22 +64,22 @@ For those interested in command-line options, see below:
 You can specify a whole directory to be converted either by putting 'dir' or 'directory' after the name of the 
 command-line script followed by the name of the directory.
 
-	perl convert_xhtml2.pl dir|directory [relative|absolute directory path] foo
+	perl convert_xhtml2.pl encoding UTF-8 dir|directory [relative|absolute directory path] foo
 
-	perl convert_xhtml2.pl dir current
+	perl convert_xhtml2.pl encoding UTF-8 dir current
 
-	perl convert_xhtml2.pl directory ../foo/
+	perl convert_xhtml2.pl encoding UTF-8 directory ../foo/
 
 You can also specify an HTML document, CSS document, or multiple documents (including the directory path if not in the
 same directory as the program) to convert followed by commas.
 
-	perl convert_xhtml2.pl [relative|absolute directory path] foo.html
+	perl convert_xhtml2.pl encoding ISO 8859-1 [relative|absolute directory path] foo.html
 
-	perl convert_xhtml2.pl ../bar/foo.html, bar.css
+	perl convert_xhtml2.pl encoding ISO 8859-1 ../bar/foo.html, bar.css
 
 =head1 METHODS
 
-my $foo = new HTML2XHTML(file_name = '..//foo//foo.html');
+my $foo = new HTML2XHTML(encoding => 'ISO 8859-1', file_name => '..//foo//foo.html');
 
 This method invokes the command-line program with the options passed.  The options can either be a list of file names
 (either absolute or relative path) separated by commas, or the name of a directory.  
@@ -100,13 +100,15 @@ L<http://www.w3.org/TR/xhtml1/> XHTML 1.0 The Extensible HyperText Markup Langua
 
 L<http://search.cpan.org/~kwilliams/PathTools-3.23/Cwd.pm> Cwd
 
+L<http://en.wikipedia.org/wiki/Character_encoding> (Character) Encoding
+
 =head1 AUTHOR
 
 Obiora Embry
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2006 by Obiora Embry
+Copyright (C) 2006-2007 by Obiora Embry.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

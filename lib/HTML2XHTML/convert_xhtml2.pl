@@ -10,21 +10,21 @@ use Cwd;
 # Date Complete: 11 November 2006 (Sat, November 11, 2006, 12:47:45 PM EST)
 # Description     : convert from HTML 4 to XHTML 1.0
 #Usage: see below:
-#user can specify that ALL HTML and CSS documents in current directory should be converted by putting 'dir' or 'directory'
-#examples perl convert_xhtml.pl dir [relative|absolute directory path|'current'] || perl convert_xhtml.pl directory 
+#user can specify that all HTML and CSS documents in current directory should be converted by putting 'dir' or 'directory'
+#example: perl convert_xhtml.pl encoding dir [relative|absolute directory path|'current'] || perl convert_xhtml.pl encoding directory 
 #[relative|absolute directory path|'current']
 #-------------------------------------------------------
 #user can specify the names of HTML and CSS documents (with relative directory location, unless in current directory)
-#separated by commas) that should be converted 
-#examples perl convert_xhtml.pl [relative|absolute directory path] filenames 
+#separated by commas that should be converted 
+#example: perl convert_xhtml.pl encoding [relative|absolute directory path] filenames [April 26, 2007]
 
-my ($html_files_ref,$css_files_ref) = directory_search_convert($ARGV[1]) if ($ARGV[0] && ($ARGV[0] eq 'dir' || $ARGV[0] eq 'directory'));
-($html_files_ref,$css_files_ref) = file_convert($ARGV[0]) if ($ARGV[0] && ($ARGV[0] ne 'dir' && $ARGV[0] ne 'directory'));
+my ($html_files_ref,$css_files_ref) = directory_search_convert($ARGV[2]) if ($ARGV[1] && ($ARGV[1] eq 'dir' || $ARGV[1] eq 'directory'));
+($html_files_ref,$css_files_ref) = file_convert($ARGV[1]) if ($ARGV[1] && ($ARGV[1] ne 'dir' && $ARGV[1] ne 'directory'));
 
-printf "\t".$html_files_ref." HTML document%s successfully converted\n", ($html_files_ref == 1) ? '' : 's' if ($ARGV[0] && $html_files_ref);
-printf "\t".$css_files_ref." CSS document%s successfully converted\n", ($css_files_ref == 1) ? '' : 's' if ($ARGV[0] && $css_files_ref);
+printf "\t".$html_files_ref." HTML document%s successfully converted\n", ($html_files_ref == 1) ? '' : 's' if ($ARGV[1] && $html_files_ref);
+printf "\t".$css_files_ref." CSS document%s successfully converted\n", ($css_files_ref == 1) ? '' : 's' if ($ARGV[1] && $css_files_ref);
 
-error('no file') unless ($ARGV[0]);
+error('no file') unless ($ARGV[1]);
 exit(0);
 
 sub directory_search_convert
@@ -103,7 +103,7 @@ open(OUTPUT, ">$file2") or die "Couldn't open $file2 for writing\n";
 
 foreach $lines (@lines)              # loop thru file
 { 
-	$lines =~ s~<\!DOCTYPE HTML PUBLIC (.+?)>~<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?> \n<\!DOCTYPE html PUBLIC \"-\/\/W3C\/\/DTD XHTML 1.0 Strict\/\/EN\" \"http:\/\/www.w3.org\/TR\/xhtml1\/DTD\/xhtml1-strict.dtd\"> \n<html xmlns=\"http:\/\/www.w3.org\/1999\/xhtml\" xml:lang=\"en\" lang=\"en\">~ig;	
+	$lines =~ s~<\!DOCTYPE HTML PUBLIC (.+?)>~<?xml version=\"1.0\" encoding=\"$ARGV[0]\"?> \n<\!DOCTYPE html PUBLIC \"-\/\/W3C\/\/DTD XHTML 1.0 Strict\/\/EN\" \"http:\/\/www.w3.org\/TR\/xhtml1\/DTD\/xhtml1-strict.dtd\"> \n<html xmlns=\"http:\/\/www.w3.org\/1999\/xhtml\" xml:lang=\"en\" lang=\"en\">~ig;	
 	$lines =~ s/<HTML>//ig;	 	
 	$lines =~ s!<META CONTENT=(.+?) HTTP-EQUIV=(.+?)>!!ig;
 	$lines =~ s!<META CONTENT =(.+?) HTTP-EQUIV =(.+?)>!!ig;

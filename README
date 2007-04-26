@@ -1,5 +1,5 @@
-HTML2XHTML version 0.01
-=======================
+HTML2XHTML version 0.03.08
+==========================
 
 INSTALLATION
 
@@ -16,7 +16,7 @@ This module requires Perl 5.001 or higher and PathTools 3.23 (Cwd).
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2006 by Obiora Embry
+Copyright (C) 2006-2007 by Obiora Embry
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,
