@@ -5,5 +5,5 @@ WriteMakefile(
     NAME              => 'HTML2XHTML',
     VERSION_FROM      => 'lib/HTML2XHTML/HTML2XHTML.pm', 
     PREREQ_PM         => {
-        'Cwd'         => undef}
+        'Cwd'         => 3.05}
 );

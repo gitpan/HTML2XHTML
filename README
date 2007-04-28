@@ -1,4 +1,4 @@
-HTML2XHTML version 0.03.08
+HTML2XHTML version 0.03.08a
 ==========================
 
 INSTALLATION
@@ -12,7 +12,7 @@ To install this module type the following:
 
 DEPENDENCIES
 
-This module requires Perl 5.001 or higher and PathTools 3.23 (Cwd).
+This module requires Perl 5.001 or higher and PathTools 3.05 (Cwd) or higher.
 
 COPYRIGHT AND LICENCE
 
