@@ -5,11 +5,11 @@ Revision history for Perl extension HTML2XHTML.
 	and directory was hard-coded)
 	
 0.02  Sat November 11, 2006 10:28:40 AM EST
-	- file name change, modified and optimized exisitng code, updated HTML tags
+	- file name change, modified and optimized existing code, updated HTML tags
 	
 0.03  Mon November 13, 2006 12:15:50 PM EST	
 	- wrote module to serve as wrapper for original command-line program; made changes to command-line program to 
-	accomodate the wrapper; added more error handling to the command-line program; submitted distribution to CPAN
+	accommodate the wrapper; added more error handling to the command-line program; submitted distribution to CPAN
 	
 0.03.01  Wed November 15, 2006 2:06:03 PM EST	
 	- modified tests to include the directory of the lib; modified POD documentation
@@ -33,3 +33,6 @@ Revision history for Perl extension HTML2XHTML.
 0.03.08  Thu April 26, 2007 3:06:17 PM EST
 	- added support for custom XML encoding and fixed errors in POD documentation
 	
+0.04  Fri January 04, 2008 11:11:32 PM EST EST
+	- modified and optimized code, updated and corrected POD documentation, added support for both Transitional and Strict,
+	created report when the XHTML document contains attributes or elements that are invalid

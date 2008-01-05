@@ -5,5 +5,6 @@ WriteMakefile(
     NAME              => 'HTML2XHTML',
     VERSION_FROM      => 'lib/HTML2XHTML/HTML2XHTML.pm', 
     PREREQ_PM         => {
-        'Cwd'         => 3.05}
+        'Cwd'         => 3.05,
+        'File::Flock' => 104.111901}
 );

@@ -10,5 +10,4 @@ t/convert_css_file.t
 t/convert_css_html_file.t
 lib/HTML2XHTML/HTML2XHTML.pm
 lib/HTML2XHTML/HTML2XHTML.pod
-lib/HTML2XHTML/convert_xhtml2.pl
-META.yml                                 Module meta-data (added by MakeMaker)
+lib/HTML2XHTML/convert_xhtml.pl

@@ -1,4 +1,4 @@
-HTML2XHTML version 0.03.08b
+HTML2XHTML version 0.04
 ==========================
 
 INSTALLATION
@@ -12,14 +12,14 @@ To install this module type the following:
 
 DEPENDENCIES
 
-This module requires Perl 5.001 or higher and PathTools 3.05 (Cwd) or higher.
+This module requires Perl 5.001 or higher, PathTools 3.05 (Cwd) or higher, and File::Flock 104.111901.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2006-2007 by Obiora Embry
+Copyright (C) 2006-2008 by Obiora Embry
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.7 or,
+it under the same terms as Perl itself, either Perl version 5.8.7 or
 at your option, any later version of Perl 5 you may have available.
 
 
