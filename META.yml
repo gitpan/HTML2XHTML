@@ -1,12 +1,14 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         HTML2XHTML
-version:      0.04a
-version_from: lib/HTML2XHTML/HTML2XHTML.pm
-installdirs:  site
-requires:
+--- #YAML:1.0
+name:                HTML2XHTML
+version:             0.04b
+abstract:            ~
+license:             ~
+author:              ~
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
     Cwd:                           3.05
     File::Flock:                   104.111901
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.17
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3
